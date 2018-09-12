@@ -1,2 +1,22 @@
+展示所有的数据库
+  show databases;
+进入某一个数据库
+  use dbname;
+展示当前数据库中所有的表
+  show tables;
+创建一个表
+  create table users(id int(2) not null primary key auto_increment,username varchar(40),password text,email text)default charset=utf8;
+查询表的结构
+  desc table_name;
+  比如查询上面所建的表，就是desc users; 结果为：
+    +----------+-------------+------+-----+---------+----------------+
+    | Field    | Type        | Null | Key | Default | Extra          |
+    +----------+-------------+------+-----+---------+----------------+
+    | id       | int(2)      | NO   | PRI | NULL    | auto_increment |
+    | username | varchar(40) | YES  |     | NULL    |                |
+    | password | text        | YES  |     | NULL    |                |
+    | email    | text        | YES  |     | NULL    |                |
+    +----------+-------------+------+-----+---------+----------------+
+    4 rows in set (0.12 sec)
 查询指定数据库中的指定的表的字段以及注释
   select column_name, column_comment from information_schema.columns where table_schema ='db' and table_name = 'tablename' ;
