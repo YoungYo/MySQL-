@@ -20,3 +20,5 @@
     4 rows in set (0.12 sec)
 查询指定数据库中的指定的表的字段以及注释
   select column_name, column_comment from information_schema.columns where table_schema ='db' and table_name = 'tablename' ;
+向表中插入一条记录，以上面那个表为例
+  insert into users(username,password,email) values("xiaoming","123123","xiaoming@gmail.com");
