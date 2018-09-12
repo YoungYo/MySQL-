@@ -17,3 +17,16 @@
   Django默认是使用SQLlite数据库，如果想使用别的数据库，需要在settings.py中通过DATABASES选项进行配置
   5.1 配置MySQL数据库
     Python3.x安装的是PyMysql，在__init__.py中写入两行代码
+    import pymysql
+    pymysql.install_as_MySQLdb()
+    接下来在settings.py中配置数据库，将其中的DATABASES改成下面这样：
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': '数据库名',
+            'USER': '用户名',
+            'PASSWORD': '密码',
+            'HOST': '数据库服务器ip',
+            'PORT': '端口',
+        }
+    }
