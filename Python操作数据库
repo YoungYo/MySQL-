@@ -9,3 +9,35 @@ cur = conn.cursor()
 cur.execute("insert into users (username, password, email) values (%s, %s, %s)", ("xiaohong", "123456", "xiaohong@gmail.com"))
 #执行完SQL语句后要提交
 conn.commit()
+
+#插入多条记录
+cur.executemany("insert into users (username,password,email) values (%s,%s,%s)",(("google","111222","g@gmail.com"),("facebook","222333","f@face.book"),("github","333444","git@hub.com"),("docker","444555","doc@ker.com")))
+conn.commit()
+
+#查询数据，同样返回值是查询到的行数
+cur.execute("select * from users");
+#如果要接收查询结果，则要使用下面的方法
+#fetchall(self):接收全部的返回结果行.
+lines = cur.fetchall()
+
+#fetchmany(size=None):接收size条返回结果行.如果size的值大于返回的结果行的数量,则会返回cursor.arraysize条数据.
+lines = cur.fetchmany(3)
+
+#fetchone():返回一条结果行.
+lines = cur.fetchone()
+
+#scroll(value, mode='relative'):移动指针到某一行.如果mode='relative',则表示从当前所在行移动value条,如果mode='absolute',则表示从结果集的第一行移动value条.
+cur.scroll(1, mode='relative')
+cur.scroll(-1, mode='relative')
+
+#还可以将读取到的数据变成字典形式
+cur = conn.cursor(cursor=MySQLdb.cursors.DictCursor)
+cur.execute("select * from users")
+user_info = cur.fetchall()
+#打印出所有的username
+for line in cur.fetchall():
+    print line["username"]
+    
+#更新记录，把表中id为2的记录的username改为xiaolan
+cur.execute("update users set username=%s where id=2",("xiaolan"))
+conn.commit()
