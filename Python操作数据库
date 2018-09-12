@@ -1,6 +1,12 @@
 import pymysql
 #连接数据库
 conn = pymysql.connect(host="localhost",user="root",passwd="123456",db="test",port=3306,charset="utf8")
+#也可以不指定数据库，而是直接连接MySQL
+#conn = MySQLdb.connect("localhost","root","123123",port=3306,charset="utf8")
+#选择数据库
+#conn.select_db("wanghao")
+#新建数据库
+#cur.execute("create database newtest")
 
 #获取游标cursor，用cursor操作数据库
 cur = conn.cursor()
@@ -41,3 +47,7 @@ for line in cur.fetchall():
 #更新记录，把表中id为2的记录的username改为xiaolan
 cur.execute("update users set username=%s where id=2",("xiaolan"))
 conn.commit()
+
+#完成操作后，关闭连接
+cur.close()
+conn.close()
