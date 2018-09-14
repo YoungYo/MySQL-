@@ -41,7 +41,8 @@
    ### 6.1.3 view.py
       视图
 # 7.激活应用
-  在settings.py文件中，将myApp应用加入到INSTALLED_APPS中
+  在settings.py文件中，将myApp应用加入到INSTALLED_APPS中:
+  '''
   INSTALLED_APPS = [
       'django.contrib.admin',
       'django.contrib.auth',
@@ -51,19 +52,20 @@
       'django.contrib.staticfiles',
       'myApp',
   ]
+  '''
 # 8.定义模型
   模型是与数据库进行交互的，一个数据表就对应一个模型，要在models.py文件中定义模型
   ## 8.1引入models模块
-    因为模型类要继承models.Model类，所以要引入models模块，引入代码如下：from django.db import models（此操作是在models.py中进行）
+   因为模型类要继承models.Model类，所以要引入models模块，引入代码如下：from django.db import models（此操作是在models.py中进行）
   ## 8.2定义模型
     代码如下：
-'''
-from django.db import models
+    '''
+    from django.db import models
 
-#Create your models here.
-#下面两个类分别对应数据库中的两个表，且两个类都继承了models.Model
+    #Create your models here.
+    #下面两个类分别对应数据库中的两个表，且两个类都继承了models.Model
 
-class Grade(models.Model):
+    class Grade(models.Model):
         gname = models.ChaField(max_length = 20) #班级名称
         gdate = models.DateTimeField() #成立时间
         ggirlnum = models.IntegerField() #女生数量
@@ -77,7 +79,7 @@ class Grade(models.Model):
         scontend = models.CharField(max_length = 20) #简介
         isDelete = models.BooleanField(default = False) #是否删除
         sgrade = models.ForeignKey("Grade", on_delete=models.CASCADE) #所在班级，关联外键
-'''        
+    '''        
   8.3 说明
     不需要定义主键，主键在生成时会自动添加，并且值自动增加
 9.在数据库中生成数据表
