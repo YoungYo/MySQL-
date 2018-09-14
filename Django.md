@@ -213,6 +213,30 @@ admin站点管理的作用是负责内容发布（包括负责添加、修改、
 
 把settings.py中的LANGUAGE_CODE的值改为`zh-Hans`，把TIME_ZONE的值改为`Asia/Shanghai`，刷线浏览器页面，就完成了汉化。    
 
+## 12.5 管理数据表
+
+### 12.5.1 修改settings.py文件
+
+在admin.py中注册模型，也就是数据表。代码如下：
+
+```python
+from django.contrib import admin
+
+# Register your models here.
+
+from .models import Grade, Student #从models.py中引入Grade类和Student类
+
+#注册
+admin.site.register(Grade) #注册班级类
+admin.site.register(Student) #注册学生类
+```
+
+注册完成后，保存settings.py，刷新管理页面。可以看到页面上多了我们添加的两个类。
+
+![](C:\Users\Administrator\Desktop\2018-09-14_114410.png)
+
+### 12.5.2 自定义管理页面
+
 
 
 
