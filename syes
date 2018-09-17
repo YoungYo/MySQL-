@@ -1,0 +1,131 @@
+[33mcommit 5ac25ffa284426d760ec87bc36f6b325a68b1476[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: unknown <wanghao19961026@163.com>
+Date:   Thu Sep 13 22:43:10 2018 +0800
+
+    增加新文件
+
+[33mcommit 241f60ff597ef8887791622c5878972805c43364[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Thu Sep 13 21:55:15 2018 +0800
+
+    Rename Django.md to Django
+
+[33mcommit 6371205085910bf3944f921455c9ffcedba08f67[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Thu Sep 13 16:45:56 2018 +0800
+
+    Update Django.md
+
+[33mcommit 148363c988abae52a6bd996ef466c1059230c580[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 22:33:15 2018 +0800
+
+    Update Django.md
+
+[33mcommit 18d3d9bab1bfa7c75ca13e0ff1eed5ee8bf62a6d[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 22:32:59 2018 +0800
+
+    Update Django.md
+
+[33mcommit c62d5726bac2c90815489d60cb3e7b9bf7ae035d[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 22:29:30 2018 +0800
+
+    Update Django.md
+
+[33mcommit 0d23fbe020e14dcbba53a441c6d736a61a45df68[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 22:15:54 2018 +0800
+
+    Create Django.md
+
+[33mcommit 0320fd468cf790f159d0cffda8b061625ce86e25[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 14:53:01 2018 +0800
+
+    Update 关于乱码问题.md
+
+[33mcommit 13685e55e0b4d739adec29f541124698ce49cd1f[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 12:04:45 2018 +0800
+
+    Update 关于乱码问题.md
+
+[33mcommit 6b7ad141bfe34f802b0c8a204f0337147c6ab196[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 11:57:04 2018 +0800
+
+    Create 关于乱码问题.md
+
+[33mcommit 10212da54d1ef59f2f697bbf189679cb8cb0a2ff[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 11:54:34 2018 +0800
+
+    Update Python操作数据库
+
+[33mcommit f72ac8c2ff0df7c8cffbab3af2fbe3cc2ac757ec[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 11:41:19 2018 +0800
+
+    Update Python操作数据库
+
+[33mcommit 16f445400fa3dd846085eb9ed381f938f6f3e94b[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:54:51 2018 +0800
+
+    Update and rename Python连接数据库 to Python操作数据库
+
+[33mcommit aba820eef27367eeb839ddae2f54b7319a9bbf89[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:42:26 2018 +0800
+
+    Update MySQL note
+
+[33mcommit d55fc2c05e642186adf14e471af75f7435221dec[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:38:36 2018 +0800
+
+    Update MySQL note
+
+[33mcommit 4e6c6a9f7823331d53dbcdc2ee0fbe7f05186c97[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:24:11 2018 +0800
+
+    Update README.md
+
+[33mcommit 5ad2b829b8c76abece685d9ddcb2a0cb4a88c899[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:22:45 2018 +0800
+
+    Create 环境准备
+
+[33mcommit 18ddc68e82f91c3cbd4bf8c4a0ebb4c233acf485[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:20:32 2018 +0800
+
+    Create Python连接数据库
+
+[33mcommit ce7310fcb7e61081a2fabe579fa60fc8153fe2ad[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:14:33 2018 +0800
+
+    Rename note to MySQL note
+
+[33mcommit 940a8da59184d8dacc7e477a1de113ef6902fb52[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:13:47 2018 +0800
+
+    Update README.md
+
+[33mcommit d4777ec4454212f330fc08bba9180b3a8b91e7bd[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:06:34 2018 +0800
+
+    Create note
+
+[33mcommit 6b0b3fe7dbe926e57edb9933dd6d8d3a5ff520cc[m
+Author: wanghao <wanghao19961026@163.com>
+Date:   Wed Sep 12 10:00:45 2018 +0800
+
+    Initial commit
