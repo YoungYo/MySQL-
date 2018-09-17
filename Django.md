@@ -233,7 +233,7 @@ admin.site.register(Student) #注册学生类
 
 注册完成后，保存settings.py，刷新管理页面。可以看到页面上多了我们添加的两个类。
 
-![](D:\Study\GitHub\PythonWeb-note\image\2018-09-14_114410.png)
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-14_114410.png)
 
 ### 12.5.2 自定义管理页面
 
