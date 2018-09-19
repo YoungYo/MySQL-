@@ -237,6 +237,129 @@ admin.site.register(Student) #注册学生类
 
 ### 12.5.2 自定义管理页面
 
+假设需要管理班级类，那么要在admin.py中定义一个类：GradeAdmin，这个类要继承admin.ModelAdmin，代码如下：
+
+```python
+from django.contrib import admin
+
+# Register your models here.
+
+from .models import Grade, Student
+
+#注册
+class GradeAdmin(admin.ModelAdmin):
+    #列表页属性
+
+    list_display = ['pk', 'gname', 'gdate', 'ggirlnum', 'gboynum', 'isDelete']
+    list_filter = ['gname']
+    search_fields = ['gname']
+    list_per_page = 5
+
+    #添加、修改页属性，fields与fieldsets不能同时使用
+    #fields = ['gname', 'gdate', 'isDelete', 'gboynum', 'ggirlnum']
+    fieldsets = [
+        ('num', {'fields':['ggirlnum', 'gboynum']}),
+        ('base', {'fields':['gname', 'gdate', 'isDelete']})
+    ]
+
+admin.site.register(Grade, GradeAdmin)
+
+admin.site.register(Student)
+```
+
+#### 属性说明
+
+`list_display`：显示字段
+
+`list_filter`：过滤字段
+
+`search_fields`：搜索字段
+
+`list_per_page`：分页
+
+`fields`：添加记录或修改属性时，属性显示的先后顺序
+
+`fieldset`：给属性分组
+
+分组后的效果如下图所示：
+
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-18_233436.png)
+
+**注意：`fields`与`fieldset`不能同时食用**
+
+#### 关联对象
+
+如何在创建一个班级时，可以直接添加若干个学生？
+
+在admin.py中定义一个类，继承`admin.TabularInline`类或`admin.StackedInline`类。然后在`GradeAdmin`类中加一行代码：`inlines = [StudentInfo]`，至此，admin.py的全部代码如下：
+
+```python
+from django.contrib import admin
+
+# Register your models here.
+
+from .models import Grade, Student
+
+#注册
+class StudentInfo(admin.TabularInline):
+    model = Student
+    extra = 2 #extra表示你在添加班级时，能够添加几个学生
+class GradeAdmin(admin.ModelAdmin):
+    inlines = [StudentInfo]
+    #列表页属性
+    list_display = ['pk', 'gname', 'gdate', 'ggirlnum', 'gboynum', 'isDelete']
+    list_filter = ['gname']
+    search_fields = ['gname']
+    list_per_page = 5
+
+    #添加、修改页属性
+    #fields = ['gname', 'gdate', 'isDelete', 'gboynum', 'ggirlnum']
+    fieldsets = [
+        ('num', {'fields':['ggirlnum', 'gboynum']}),
+        ('base', {'fields':['gname', 'gdate', 'isDelete']})
+    ]
+
+admin.site.register(Grade, GradeAdmin)
+
+#注册
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'sname', 'sgender', 'sage', 'scontend', 'isDelete', 'sgrade_id']
+    list_per_page = 2
+
+admin.site.register(Student, StudentAdmin)
+```
+
+`StudentInfo`继承`admin.TabularInline`类时的效果图：
+
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-19_000900.png)
+
+`StudentInfo`继承`admin.StackedInline`类时的效果图：
+
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-19_101435.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
