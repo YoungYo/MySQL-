@@ -337,25 +337,238 @@ admin.site.register(Student, StudentAdmin)
 
 ![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-19_101435.png)
 
+#### 布尔值显示问题
 
+原始状态下，学生性别的显示是下面红框中的那样，因为我们在创建数据表的时候，sgender这个字段是bool类型的，如果是男生，值就是true，如果是女生，值就是false。如果我们想让它显示男女怎么办呢？
 
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-19_103245.png)
 
+我们需要在admin.py文件中的`StudentAdmin`类中定义一个方法，方法名任意，这里取名为`displayGender`，方法体代码如下：
 
+```python
+def displayGender(self):
+	if self.sgender:
+		return "男"
+    else:
+        return "女"
+```
 
+然后在`StudentAdmin`类的`list_display`这个属性中把`'sgender'`改为方法名，方法名不需要加引号。完整代码如下：
 
+```python
+class StudentAdmin(admin.ModelAdmin):
+    def displayGender(self):
+        if self.sgender:
+            return "男"
+        else:
+            return "女"
+    list_display = ['pk', 'sname', displayGender, 'sage', 'scontend', 'isDelete', 'sgrade_id']
+    list_per_page = 2
+```
 
+保存文件，刷新页面，效果图如下：
 
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-19_104713.png)
 
+同样，其他的布尔值的显示也可以通过上述方法修改。
 
+#### 更改字段名的显示方式
 
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-19_104713_modified.png)
 
+如上图所示，在显示数据时，字段名的显示是按照数据库中的格式显示的，如果我们想让它按照我们设想的方式显示应该怎么办呢？比如，在姓名那一栏，不让他显示“SNAME”，而是显示“姓名”。
 
+首先，跟前面一样，在admin.py文件中的`StudentAdmin`类中先定义一个方法，方法体如下：
 
+```python
+def displayName(self):
+	return self.sname
+```
 
+然后在`StudentAdmin`类的`list_display`这个属性中把`'sname'`改为方法名，方法名不需要加引号。最后再添加一行代码：`displayName.short_description = "姓名"`
 
+同样，如果我们想改性别那一栏，操作方法也是如此。之前我们为了改变布尔值的显示方式，定义了一个方法叫做`displayGender`，然后刷新浏览器后我们发现性别那一栏就显示“DISPLAYGENDER”了，而不是显示原来的“SGENDER”。如果我们想让它显示“性别”，因为我们已经定义过了方法，所以现在直接添加一行代码就可以：`displayGender.short_description = "性别"`
 
+完整代码如下：
 
+```python
+class StudentAdmin(admin.ModelAdmin):
+    def displayGender(self):
+        if self.sgender:
+            return "男"
+        else:
+            return "女"
+    def displayName(self):
+        return self.sname
+    list_display = ['pk', displayName, displayGender, 'sage', 'scontend', 'isDelete', 'sgrade_id']
+    list_per_page = 2
+    displayGender.short_description = "性别"
+    displayName.short_description = "姓名"
+```
 
+修改后显示效果如下：
+
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-19_111243.png)
+
+同样，要想修改其他字段，步骤也是一样。
+
+#### 执行动作位置问题
+
+下图中红框圈出来的就是执行动作的部分，如果想把它放到底部，操作如下：
+
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-19_111828.png)
+
+在admin.py文件中的`StudentAdmin`类中添加如下代码：
+
+```python
+actions_on_top = False
+actions_on_bottom = True
+```
+
+刷新浏览器页面，效果如下：
+
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-19_113042.png)
+
+如果想让它既在上面又在下面，那么就让`actions_on_top`和`actions_on_bottom`等于`True`，即：
+
+```python
+actions_on_top = True
+actions_on_bottom = True
+```
+
+### 12.5.3 使用装饰器完成注册
+
+定义`StudentAdmin`类来管理学生类`Student`的时候，需要进行注册，之前我们使用的是这行代码：`admin.site.register(Student, StudentAdmin)`（可在前面的代码中找到），以后注册的时候不这样做了，我们用装饰器进行注册，就是在类`StudentAdmin`前面加上：`@admin.register(Student)`。同样，在管理别的类的时候，也是这样进行注册，括号里面的就是你要管理的类名。
+
+# 13. 视图的基本使用
+
+## 13.1 概述
+
+在Django中，视图对web请求进行回应。视图就是一个Python函数，在view.py文件中定义。
+
+## 13.2 定义视图
+
+先定义一个简单的视图：
+
+```python
+from django.shortcuts import render
+
+# Create your views here.
+
+from django.http import HTTPResponse
+
+#请求器
+def index(request):
+    return HTTPResponse("Hello world!")
+```
+
+## 13.3 配置URL
+
+在myApp目录下创建一个urls.py文件，里面代码如下：
+
+```Python
+from django.conf.urls import url
+from . import views
+urlpatterns = [
+    url(r'^$', views.index)
+]
+```
+
+修改project目录下的urls.py文件：
+
+```python
+from django.conf.urls import url, include
+from django.contrib import admin
+from django.urls import path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myApp.urls')) #仅输入IP地址，后面不带任何参数时，跳转到这个myApp.urls里面的index
+]
+```
+
+接下来在浏览器中输入`http://127.0.0.1:8000`：
+
+![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-21_130502.png)
+
+可以看到，页面上打印出了“Hello world!”
+
+# 14. 模板的基本使用
+
+## 14.1 概述
+
+模板是HTML页面，可以根据视图中传递过来的数据进行填充
+
+## 14.2 创建模板目录
+
+在项目根目录（即project目录）下创建目录templates，也就是说templates与myApp目录是同级的。然后在templates目录下创建一个myApp目录，这个目录用来存放应用myApp的模板。
+
+## 14.3 配置模板路径
+
+修改settings.py文件中的TEMPLATES的DIRS的值：`'DIRS': [os.path.join(BASE_DIR, 'templates')]`
+
+## 14.4 定义模板
+
+在templates/myApp目录下创建两个HTML文件，grade.html和student.html
+
+### 14.4.1 模板语法
+
+1. {{输出值，可以是变量，也可以是对象.属性}}
+2. {%执行代码段%}
+
+### 14.4.2 实现一个功能
+
+当我在浏览器中输入`http://127.0.0.0:8000/grade` 的时候，浏览器上显示班级信息。
+
+具体操作步骤如下：
+
+1. 修改project/myApp/urls.py，在	`urlpattern `中添加一个元素：`url(r'grade/$', views.grade)`，改完之后文件内容如下：
+
+   ```python
+   from django.conf.urls import url
+   from . import views
+   urlpatterns = [
+       url(r'^$', views.index),
+       url(r'grade/$', views.grade)
+   ```
+
+2. 修改project/myApp/views.py，在文件中添加如下代码：
+
+   ```python
+   from .models import Grade, Student
+   def grade(request):
+       #去模板中取数据
+       gradeList = Grade.objects.all()
+       #将数据传递给模板，模板再渲染页面，将渲染好的页面返回给浏览器
+       return render(request, 'myApp/grade.html', {"grade":gradeList})
+   ```
+
+3. 修改project/templates/myApp/grade.html，文件代码如下：
+
+   ```html
+   <!DOCTYPE html>
+   <html lang = "en">
+   <head>
+   	<meta charset="UTF-8">
+   	<title>班级信息</title>
+   </head>
+   <body>
+   	<h1>班级信息列表</h1>
+   	<ul>
+   		{%for g in grade%}
+   		<li>
+   			<a href="#">{{g.gname}}</a>
+   		</li>
+   		{%endfor%}
+   	</ul>
+   </body>
+   </html>
+   
+   ```
+
+4. 在浏览器中输入网址，效果如下：
+
+   ![](https://raw.githubusercontent.com/YoungYo/PythonWeb-note/master/image/2018-09-21_141130.png)
 
 
 
